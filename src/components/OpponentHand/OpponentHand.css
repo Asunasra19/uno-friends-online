@@ -1,0 +1,87 @@
+/* ── Base wrapper ── */
+.opp-root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  transition: filter 0.3s;
+}
+
+/* Active player glow */
+@keyframes activePulse {
+  0%, 100% { box-shadow: 0 0 14px color-mix(in srgb, var(--cc) 40%, transparent); border-color: color-mix(in srgb, var(--cc) 60%, transparent); }
+  50% { box-shadow: 0 0 28px var(--cc), 0 0 40px color-mix(in srgb, var(--cc) 30%, transparent); border-color: var(--cc); }
+}
+
+.opp-root--active .opp-info {
+  animation: activePulse 2s ease-in-out infinite;
+}
+
+/* ── Name badge ── */
+.opp-info {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 99px;
+  padding: 4px 12px 4px 8px;
+  white-space: nowrap;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.opp-emoji { font-size: 1.1rem; }
+.opp-name  { font-size: 0.8rem; font-weight: 800; color: #e0e0ff; }
+.opp-count { font-size: 0.72rem; color: #7070a0; font-weight: 700; }
+.opp-uno   {
+  font-size: 0.64rem; font-weight: 900; color: #fff;
+  background: linear-gradient(135deg, #ff3b3b, #ff6b35);
+  border-radius: 99px; padding: 1px 7px; letter-spacing: 0.5px;
+  animation: pulse 0.8s ease-in-out infinite;
+}
+
+/* ══════════════════════════════════════════
+   Fanning for Top, Left, Right
+══════════════════════════════════════════ */
+.opp-fan--top,
+.opp-fan--left,
+.opp-fan--right {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  min-height: 80px;
+}
+
+.opp-card--top,
+.opp-card--left,
+.opp-card--right {
+  position: relative;
+  margin-left: -32px;
+  transform: rotate(var(--rot, 0deg)) translateY(var(--y, 0px));
+  transition: transform 0.3s ease;
+}
+
+.opp-card--top:first-child,
+.opp-card--left:first-child,
+.opp-card--right:first-child {
+  margin-left: 0;
+}
+
+/* ══════════════════════════════════════════
+   LEFT / RIGHT container rotations
+══════════════════════════════════════════ */
+.opp-root--left,
+.opp-root--right {
+  position: absolute;
+}
+
+.opp-root--left {
+  transform: rotate(90deg);
+  transform-origin: center center;
+  width: 200px;
+}
+
+.opp-root--right {
+  transform: rotate(-90deg);
+  transform-origin: center center;
+  width: 200px;
+}

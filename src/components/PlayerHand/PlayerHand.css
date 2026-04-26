@@ -1,0 +1,109 @@
+.ph-root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0 4px;
+  width: 100%;
+}
+
+.ph-cards {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  flex-wrap: nowrap;
+  width: 100%;
+  padding: 0 12px;
+  min-height: 160px;
+}
+
+/* Individual card */
+.ph-card {
+  position: relative;
+  transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), filter 0.2s, z-index 0s;
+  border-radius: 12px;
+  margin-left: -40px;
+  transform: rotate(var(--rot, 0deg)) translateY(var(--y, 0px));
+}
+.ph-card:first-child {
+  margin-left: 0;
+}
+
+.ph-card--playable {
+  cursor: pointer;
+}
+.ph-card--playable:hover {
+  transform: rotate(var(--rot, 0deg)) translateY(calc(var(--y, 0px) - 28px)) scale(1.15) !important;
+  z-index: 100 !important;
+}
+.ph-card--playable::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #ffd700, #ff6b35);
+  z-index: -1;
+  opacity: 0.7;
+  filter: blur(8px);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.ph-card--drawn {
+  animation: drawCardAnim 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+}
+
+@keyframes drawCardAnim {
+  0% { 
+    opacity: 0; 
+    top: -250px; 
+    scale: 0.5; 
+    filter: drop-shadow(0 40px 20px rgba(0,0,0,0.5));
+  }
+  100% { 
+    opacity: 1; 
+    top: 0; 
+    scale: 1; 
+    filter: drop-shadow(0 0px 0px rgba(0,0,0,0));
+  }
+}
+
+.ph-card--drawn.ph-card--playable::after {
+  background: linear-gradient(135deg, #00e676, #2979ff);
+}
+
+.ph-card--dim {
+  opacity: 0.5;
+  filter: grayscale(0.4);
+  cursor: not-allowed;
+}
+
+/* End turn button */
+.ph-end-btn {
+  padding: 10px 28px;
+  border-radius: 99px;
+  background: linear-gradient(135deg, #1565c0, #2979ff);
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 800;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 18px rgba(41,121,255,0.4);
+  transition: transform 0.18s, box-shadow 0.18s;
+}
+.ph-end-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(41,121,255,0.6);
+}
+
+@media screen and (max-height: 600px) and (orientation: landscape) {
+  .ph-cards {
+    min-height: 110px;
+  }
+  .ph-card svg {
+    width: 75px !important;
+    height: 105px !important;
+  }
+  .ph-card--playable:hover {
+    transform: rotate(var(--rot, 0deg)) translateY(calc(var(--y, 0px) - 15px)) scale(1.1) !important;
+  }
+}

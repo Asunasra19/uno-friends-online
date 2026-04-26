@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Boogaloo&family=Nunito:wght@400;600;700;800;900&display=swap');
+
+/* ─── Design Tokens ─────────────────────────────────────────── */
+:root {
+  --bg-base:        #0b0b1a;
+  --bg-surface:     #12122a;
+  --glass-bg:       rgba(255, 255, 255, 0.06);
+  --glass-border:   rgba(255, 255, 255, 0.12);
+  --glass-blur:     18px;
+
+  --red:    #ff3b3b;
+  --yellow: #ffd700;
+  --green:  #00e676;
+  --blue:   #2979ff;
+  --purple: #c44eff;
+  --orange: #ff7043;
+
+  --text-primary:   #f0f0ff;
+  --text-secondary: #9090b8;
+  --text-muted:     #5a5a88;
+
+  --radius-sm:  8px;
+  --radius-md:  14px;
+  --radius-lg:  22px;
+  --radius-xl:  32px;
+
+  --shadow-glow-red:    0 0 24px rgba(255, 59, 59, 0.45);
+  --shadow-glow-blue:   0 0 24px rgba(41, 121, 255, 0.45);
+  --shadow-glow-green:  0 0 24px rgba(0, 230, 118, 0.4);
+  --shadow-glow-yellow: 0 0 24px rgba(255, 215, 0, 0.4);
+}
+
+/* ─── Reset & Base ──────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  overflow-x: hidden;
+}
+
+/* ─── Scrollbar ─────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-base); }
+::-webkit-scrollbar-thumb { background: #2a2a55; border-radius: 99px; }
+
+/* ─── Global Button Reset ───────────────────────────────────── */
+button {
+  font-family: 'Nunito', sans-serif;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+input {
+  font-family: 'Nunito', sans-serif;
+  outline: none;
+}
+
+/* ─── Floating Card Animations ──────────────────────────────── */
+@keyframes floatCard {
+  0%   { transform: translateY(0px) rotate(var(--rot)) scale(var(--sc)); opacity: 0.12; }
+  50%  { transform: translateY(-28px) rotate(calc(var(--rot) + 8deg)) scale(var(--sc)); opacity: 0.18; }
+  100% { transform: translateY(0px) rotate(var(--rot)) scale(var(--sc)); opacity: 0.12; }
+}
+
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes dialogSlideIn {
+  from { opacity: 0; transform: translateY(-20px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.5); }
+  50%       { box-shadow: 0 0 0 10px rgba(255, 215, 0, 0); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+/* ─── Utility Classes ───────────────────────────────────────── */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+}
